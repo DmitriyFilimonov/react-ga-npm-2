@@ -1,13 +1,16 @@
 import React from 'react';
-import { ReactGA } from '../../react-ga-dummy/react-ga-dummy';
-import { GAEventType, TrackerEventType } from '../../types/types';
+import { GAEventType, TrackerEvent } from '../../types/types';
 import { MyChildrenProps } from '../buttons/abstract-button/MyButton';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-000000-01');
+ReactGA.pageview(window.location.pathname + window.location.search);
+
 const TrackerWrapper = (
-    dataForTrackers: TrackerEventType[],
+    dataForTrackers: TrackerEvent[],
     Children: React.FC<MyChildrenProps>) => {
 
-    const clickHandlerFromTrackerContext = (dataForTrackers: TrackerEventType[]) => {
+    const clickHandlerFromTrackerContext = (dataForTrackers: TrackerEvent[]) => {
         dataForTrackers.map(typedEvent => {
             if (typedEvent.serviceName === 'google') {
                 alert('google event')

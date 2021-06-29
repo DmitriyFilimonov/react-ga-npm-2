@@ -13,6 +13,6 @@ export interface YandexEventType extends TrackerBaseEventType<'yandex'> {
     type: string;
     conditions: any[];
 }
-export type TrackerEventType =
+export type TrackerEvent =
     | GAEventType
     | YandexEventType;
