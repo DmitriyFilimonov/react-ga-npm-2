@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactGA } from '../../react-ga-dummy/react-ga-dummy';
 import { GAEventType, TrackerEventType } from '../../types/types';
-import { MyChildrenProps } from '../button/MyButton';
+import { MyChildrenProps } from '../buttons/abstract-button/MyButton';
 
 const TrackerWrapper = (
     dataForTrackers: TrackerEventType[],
