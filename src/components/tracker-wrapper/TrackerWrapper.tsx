@@ -3,8 +3,6 @@ import { ReactGA } from '../../react-ga-dummy/react-ga-dummy';
 import { GAEventType, TrackerEventType } from '../../types/types';
 import { MyChildrenProps } from '../button/MyButton';
 
-
-
 const TrackerWrapper = (
     dataForTrackers: TrackerEventType[],
     Children: React.FC<MyChildrenProps>) => {
@@ -19,10 +17,16 @@ const TrackerWrapper = (
         })
     }
 
-    return (props: MyChildrenProps) =>
-        <div onClick={() => clickHandlerFromTrackerContext(dataForTrackers)}>
-            <Children {...props} />
-        </div>
+    return (props: MyChildrenProps) => {
+        const newProps = {
+            ...props,
+            onClick: () => {
+                props.onClick()
+                clickHandlerFromTrackerContext(dataForTrackers)
+            }
+        }
+        return <Children {...newProps} />
+    }
 }
 
 export default TrackerWrapper;

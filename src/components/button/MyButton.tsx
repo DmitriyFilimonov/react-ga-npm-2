@@ -1,18 +1,20 @@
 import { EventsForTrackers, EXAMPLE_EVENT_ONE } from "../../events/events";
-import TrackerWrapper from "../tracker-wrapper/TrackerWrapper"
+import TrackerWrapper from "../tracker-wrapper/TrackerWrapper";
 
 export interface MyChildrenProps {
     title: string;
+    onClick: any;
 }
 
-const MyButton = ({title}: MyChildrenProps) => {
+export const MyButton: React.FC<MyChildrenProps> = ({ title, onClick: myOnClick }) => {
+    const innerOnClick = myOnClick
     return (
         <button
-            onClick={() => alert('action')}
+            onClick={() => innerOnClick()}
         >
             {title}
         </button>
     )
 }
 
-export const WrappedButton = TrackerWrapper(EventsForTrackers[EXAMPLE_EVENT_ONE],  MyButton);
+export const WrappedButton = TrackerWrapper(EventsForTrackers[EXAMPLE_EVENT_ONE], MyButton);

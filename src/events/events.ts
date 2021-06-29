@@ -16,5 +16,5 @@ export const EventsForTrackers: { [eventName: string]: TrackerEventType[] } = {
         name: 'anyValue',
         type: 'anyValue',
         conditions: [],
-    }]
-}
+    },]
+};
