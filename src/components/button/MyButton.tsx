@@ -3,7 +3,7 @@ import TrackerWrapper from "../tracker-wrapper/TrackerWrapper";
 
 export interface MyChildrenProps {
     title: string;
-    onClick: any;
+    onClick: Function;
 }
 
 export const MyButton: React.FC<MyChildrenProps> = ({ title, onClick: myOnClick }) => {
