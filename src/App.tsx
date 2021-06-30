@@ -1,14 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { WithEventOneWrappedButton } from './components/buttons/EventOneButton';
-import { WithEventTwoWrappedButton } from './components/buttons/EventTwoButton';
+import WrappedButton from './components/tracker-wrapper/TrackerWrapperForButton';
 
 function App() {
   return (
     <div className="App">
-      <WithEventOneWrappedButton />
-      <WithEventTwoWrappedButton />
+      <WrappedButton
+        action=''
+        category=''
+        label=''
+        onClick={() => { }}
+        title=''
+      />
     </div>
   );
 }
