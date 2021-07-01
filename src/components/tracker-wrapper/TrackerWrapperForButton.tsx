@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ButtonChildrenProps, GAEventType, TrackerEvent } from '../../types/types';
+import { ButtonChildrenProps, ClickEventWrapper, TrackerEvent } from '../../types/types';
 
 import ReactGA from 'react-ga';
 import { MyButton } from '../buttons/abstract-button/MyButton';
@@ -7,14 +7,10 @@ import { AnaliticsObject } from '../../analitics-context/AnaliticsContext';
 ReactGA.initialize('UA-000000-01');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
-const TrackerWrapperForButton = (
+function TrackerWrapperForButton(
     Children: React.FC<ButtonChildrenProps>,
-) => {
-
-    const clickHandlerFromTrackerContext = (dataForTrackers: GAEventType) => {
-        AnaliticsObject.customEvent(dataForTrackers)
-    }
-    return (props: ButtonChildrenProps & GAEventType) => {
+) {
+    return (props: ButtonChildrenProps & ClickEventWrapper) => {
         const newProps = {
             ...props,
             onClick: () => {
@@ -23,7 +19,7 @@ const TrackerWrapperForButton = (
                     category,
                     label,
                 } = props;
-                clickHandlerFromTrackerContext({
+                AnaliticsObject.onClick({
                     action,
                     category,
                     label,

@@ -3,7 +3,7 @@ export type TrackerType = 'google' | 'yandex' | 'new relic';
 export interface TrackerBaseEventType<T extends TrackerType> {
     serviceName: T,
 }
-export interface GAEventType {
+export interface ClickEventWrapper {
     category: string,
     action: string,
     label: string,
@@ -14,7 +14,7 @@ export interface YandexEventType extends TrackerBaseEventType<'yandex'> {
     conditions: any[];
 }
 export type TrackerEvent =
-    | GAEventType
+    | ClickEventWrapper
     | YandexEventType;
 export interface ButtonChildrenProps {
     title: string;
@@ -26,4 +26,6 @@ export interface GAEvent {
     category: string,
     action: string,
     label: string
+}
+export interface PageEventWrapper {
 }

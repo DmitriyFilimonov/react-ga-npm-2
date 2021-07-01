@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import WrappedButton from './components/tracker-wrapper/TrackerWrapperForButton';
+import { TrackerWrapperForPage } from './components/tracker-wrapper/TrackerWrapperForPage';
 
 function App() {
   return (
@@ -17,4 +18,5 @@ function App() {
   );
 }
 
+export const WrappedApp = TrackerWrapperForPage(App);
 export default App;
