@@ -7,11 +7,11 @@ function App() {
   return (
     <div className="App">
       <WrappedButton
-        action=''
-        category=''
-        label=''
-        onClick={() => { }}
-        title=''
+        action='TEST_ACTION'
+        category='TESTS'
+        label='TESTS'
+        onClick={() => alert('main action')}
+        title='test button'
       />
     </div>
   );

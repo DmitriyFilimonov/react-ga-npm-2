@@ -22,3 +22,8 @@ export interface ButtonChildrenProps {
 }
 export interface ComponentChildrenProps {
 }
+export interface GAEvent {
+    category: string,
+    action: string,
+    label: string
+}
