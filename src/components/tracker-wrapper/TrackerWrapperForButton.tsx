@@ -3,8 +3,8 @@ import { ButtonChildrenProps, ClickEventWrapper, TrackerEvent } from '../../type
 
 import ReactGA from 'react-ga';
 import { MyButton } from '../buttons/abstract-button/MyButton';
-import { AnaliticsObject } from '../../analitics-context/AnaliticsContext';
-ReactGA.initialize('UA-000000-01');
+import { AnaliticsContext } from '../../analitics-context/AnaliticsContext';
+ReactGA.initialize('G-1B6E1Z43HE');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 function TrackerWrapperForButton(
@@ -19,11 +19,11 @@ function TrackerWrapperForButton(
                     category,
                     label,
                 } = props;
-                AnaliticsObject.onClick({
-                    action,
-                    category,
-                    label,
-                });
+                // AnaliticsObject.onClick({
+                //     action,
+                //     category,
+                //     label,
+                // });
                 props.onClick();
             }
         }
