@@ -5,29 +5,21 @@ import {
     AnaliticsContext,
     IAnaliticsContext
 } from '../../analitics-context/AnaliticsContext';
+import { useContext } from 'react';
 
 export function TrackerWrapperForPage(
     Children: React.FC,
 ) {
-    const AdditionalFunctionality = ({ onRender }: Partial<IAnaliticsContext>) => {
+    return (props?: PageChildProps & PageEventWrapper) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const context = useContext(AnaliticsContext);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const currentUrl = window.location.pathname + window.location.search;
-            onRender && onRender(currentUrl);
+            context.onRender(currentUrl)
         }, [])
-        return <></>
-    }
-    return (props?: PageChildProps & PageEventWrapper) => {
         return (
-            <AnaliticsContext.Consumer>
-                {({ onRender }) => {
-                    return (
-                        <>
-                            <AdditionalFunctionality onRender={onRender} />
-                            <Children />
-                        </>
-                    )
-                }}
-            </AnaliticsContext.Consumer>
+            <Children />
         )
     }
 };
