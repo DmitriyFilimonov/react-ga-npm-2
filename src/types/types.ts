@@ -1,31 +1,15 @@
-export type TrackerType = 'google' | 'yandex' | 'new relic';
-
-export interface TrackerBaseEventType<T extends TrackerType> {
-    serviceName: T,
+export interface ButtonChildProps {
+    title: string;
+    onClick: Function;
+}
+export interface PageChildProps {
+    ownProp1?: any;
+}
+export interface PageEventWrapper {
+    extendedProp1: any;
 }
 export interface ClickEventWrapper {
     category: string,
     action: string,
     label: string,
-}
-export interface YandexEventType extends TrackerBaseEventType<'yandex'> {
-    name: string;
-    type: string;
-    conditions: any[];
-}
-export type TrackerEvent =
-    | ClickEventWrapper
-    | YandexEventType;
-export interface ButtonChildrenProps {
-    title: string;
-    onClick: Function;
-}
-export interface ComponentChildrenProps {
-}
-export interface GAEvent {
-    category: string,
-    action: string,
-    label: string
-}
-export interface PageEventWrapper {
 }

@@ -1,46 +1,37 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 import { ClickEventWrapper } from "../types/types";
+import GA4React from 'ga-4-react';
 
 export type onRenderFunction = (url: string) => void;
 
-export interface IAnaliticsContext {
-    history: string[],
-    onClick: Function,
-    onRender: onRenderFunction,
-    systemsMapper: (url: string) => void,
-    systems: string[],
-    getIsVisited: (url: string) => boolean,
-}
 type Refresh = 'pass' | 'refresh';
 
+export interface IAnaliticsContext {
+    onClick: Function,
+    onRender: onRenderFunction,
+}
+
 export const AnaliticsObject: IAnaliticsContext = (() => {
+    const ga4react = new GA4React(
+        'G-1B6E1Z43HE',
+    );
+    let ga4 = ga4react.initialize().then(ga4 => ga4)
     return {
-        history: [],
         onClick: function ({
             action,
             category,
             label,
         }: ClickEventWrapper) {
-            AnaliticsObject.systems.map(
-                system => alert(`${system}`)
-            );
-        },
-        systems: ['google', 'yandex', 'and more...'],
-        getIsVisited: function (url: string) {
-            return url == AnaliticsObject.history[AnaliticsObject.history.length];
-        },
-        systemsMapper: function (message: string) {
-            console.log(AnaliticsObject.history)
-            AnaliticsObject.systems.map(
-                system => alert(`${system}${message}`)
-            );
+            ga4.then(ga4 => {
+                ga4.event(
+                    action,
+                    category,
+                    label
+                )
+            }, (err) => console.log(err))
         },
         onRender: function (url: string) {
-            AnaliticsObject.history.push(url);
-            const message: Refresh = AnaliticsObject.getIsVisited(url)
-                ? 'refresh'
-                : 'pass';
-            AnaliticsObject.systemsMapper(message);
+            ga4react.pageview(url)
         },
     }
 })()

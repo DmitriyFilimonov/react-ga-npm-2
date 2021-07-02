@@ -1,34 +1,33 @@
-import React, { useContext, useEffect } from 'react';
-import { PageEventWrapper } from '../../types/types';
-import ReactGA from 'react-ga';
+import React, { useEffect } from 'react';
+import { PageChildProps, PageEventWrapper } from '../../types/types';
 
-import { AnaliticsContext, IAnaliticsContext, onRenderFunction } from '../../analitics-context/AnaliticsContext';
-
+import {
+    AnaliticsContext,
+    IAnaliticsContext
+} from '../../analitics-context/AnaliticsContext';
 
 export function TrackerWrapperForPage(
     Children: React.FC,
 ) {
     const AdditionalFunctionality = ({ onRender }: Partial<IAnaliticsContext>) => {
         useEffect(() => {
-            // ReactGA.ga('send', 'pageview', '/mypage');
-            // ReactGA.pageview('/');
             const currentUrl = window.location.pathname + window.location.search;
             onRender && onRender(currentUrl);
         }, [])
         return <></>
     }
-    return (props?: PageEventWrapper) => {
+    return (props?: PageChildProps & PageEventWrapper) => {
         return (
-            <>
-                <AnaliticsContext.Consumer>
-                    {({ history, onClick, onRender }) => (
-                        <AdditionalFunctionality
-                            onRender={onRender}
-                        />
-                    )}
-                </AnaliticsContext.Consumer>
-                <Children />
-            </>
+            <AnaliticsContext.Consumer>
+                {({ onRender }) => {
+                    return (
+                        <>
+                            <AdditionalFunctionality onRender={onRender} />
+                            <Children />
+                        </>
+                    )
+                }}
+            </AnaliticsContext.Consumer>
         )
     }
 };

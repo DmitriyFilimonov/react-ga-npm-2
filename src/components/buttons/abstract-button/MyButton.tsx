@@ -1,6 +1,6 @@
-import { ButtonChildrenProps } from "../../../types/types"
+import { ButtonChildProps } from "../../../types/types"
 
-export const MyButton: React.FC<ButtonChildrenProps> = ({ title, onClick: myOnClick }) => {
+export const MyButton: React.FC<ButtonChildProps> = ({ title, onClick: myOnClick }) => {
     const innerOnClick = myOnClick
     return (
         <button
