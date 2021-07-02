@@ -5,5 +5,5 @@ const HomePage = () => {
         <h1>Home page</h1>
     )
 }
-export const WrappedHomePage = TrackerWrapperForPage(HomePage);
+export const WrappedHomePage = TrackerWrapperForPage(HomePage); //пропсы через запятую
 export default HomePage;

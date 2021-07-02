@@ -9,6 +9,7 @@ import { useContext } from 'react';
 
 export function TrackerWrapperForPage(
     Children: React.FC,
+    //параметры из вызова
 ) {
     return (props?: PageChildProps & PageEventWrapper) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -17,6 +18,7 @@ export function TrackerWrapperForPage(
         useEffect(() => {
             const currentUrl = window.location.pathname + window.location.search;
             context.onRender(currentUrl)
+            //параметры
         }, [])
         return (
             <Children />

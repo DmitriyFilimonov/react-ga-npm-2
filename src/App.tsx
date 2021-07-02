@@ -18,7 +18,7 @@ function App() {
             category='click'
             label='TESTS'
             onClick={() => {
-              url == '/' ? setUrl('/one') : setUrl('/');
+              url === '/' ? setUrl('/one') : setUrl('/');
               history.push(url)
             }}
             title='switch route'

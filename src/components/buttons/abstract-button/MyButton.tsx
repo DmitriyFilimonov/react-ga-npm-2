@@ -4,7 +4,7 @@ export const MyButton: React.FC<ButtonChildProps> = ({ title, onClick: myOnClick
     const innerOnClick = myOnClick
     return (
         <button
-            onClick={() => innerOnClick()}
+            onClick={innerOnClick}
         >
             {title}
         </button>

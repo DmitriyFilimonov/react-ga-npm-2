@@ -13,7 +13,7 @@ export interface IAnaliticsContext {
 
 export const AnaliticsObject: IAnaliticsContext = (() => {
     const ga4react = new GA4React(
-        'G-1B6E1Z43HE',
+        'G-1B6E1Z43HE',//сделать идентификатор динамическим, проверить исходник редакс (контекст)
     );
     let ga4 = ga4react.initialize().then(ga4 => ga4)
     return {

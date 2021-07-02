@@ -10,27 +10,25 @@ import { useContext } from 'react';
 function TrackerWrapperForButton(
     Children: React.FC<ButtonChildProps>,
 ) {
-    return (props: ButtonChildProps & ClickEventWrapper) => {
+    return ({
+        action,
+        category,
+        label,
+        onClick: onClickFromProps,
+        ...props
+    }: ButtonChildProps & ClickEventWrapper) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { onClick: onClickFromContext } = useContext(AnaliticsContext);
-        const newProps = {
-            ...props,
-            onClick: () => {
-                const {
-                    action,
-                    category,
-                    label,
-                } = props;
-                onClickFromContext({
-                    label,
-                    category,
-                    action,
-                });
-                props.onClick();
-            }
+        const onClick = () => {
+            onClickFromContext({
+                label,
+                category,
+                action,
+            });
+            onClickFromProps.apply(arguments);
         }
         return (
-            <Children {...newProps} />
+            <Children {...props} onClick={onClick} />
         )
     }
 }
