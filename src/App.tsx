@@ -17,8 +17,7 @@ function App() {
   const googleId = getGoogleIdFromStoreDummy();
 
   useEffect(() => {
-    //!myStore.isInitialized && setStoreInState({ ...myStore.acceptGoogleId(googleId) });
-    !myStore.isInitialized && myStore.acceptGoogleId(googleId);
+    !myStore.isInitialized && setStoreInState({...myStore.acceptGoogleId(googleId)});
   }, [myStore.isInitialized])
 
   const callBack = (param: string) => {
@@ -27,11 +26,11 @@ function App() {
     alert(param);
   }
 
-  //if (!myStore.isInitialized) return <></>;
+  if (!storeInState.isInitialized) return <></>;
 
   return (
     <>
-      {/* <AnaliticsContext.Provider value={myStore}> если закоментировать - тоже работает */}
+      <AnaliticsContext.Provider value={myStore}> {/* если закоментировать - тоже работает */}
         <div className="App">
           <WrappedButton
             action='event'
@@ -44,7 +43,7 @@ function App() {
             <Routes />
           </Switch>
         </div>
-      {/* </AnaliticsContext.Provider> если закоментировать - тоже работает */}
+      </AnaliticsContext.Provider> {/* если закоментировать - тоже работает */}
     </>
   );
 }

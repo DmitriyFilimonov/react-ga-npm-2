@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { PageChildProps, PageEventWrapper } from '../../types/types';
 
 import {
@@ -15,8 +15,10 @@ export function TrackerWrapperForPage(
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const context = useContext(AnaliticsContext);
         // eslint-disable-next-line react-hooks/rules-of-hooks
+        const ga4React = useMemo(() => context.ga4React, [context.isInitialized]);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            //context.onRender(url)
+            context.ga4React?.pageview(url);
         }, [])
         return (
             <Children />
