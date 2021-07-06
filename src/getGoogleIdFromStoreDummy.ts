@@ -1,0 +1,1 @@
+export const getGoogleIdFromStoreDummy = () => 'G-1B6E1Z43HE';

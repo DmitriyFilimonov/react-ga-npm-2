@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 
 export interface ButtonChildProps {
     title: string;
-    onClick: MouseEventHandler<HTMLElement>;
+    onClick: Function;
 }
 export interface PageChildProps {
     ownProp1?: any;

@@ -9,16 +9,14 @@ import { useContext } from 'react';
 
 export function TrackerWrapperForPage(
     Children: React.FC,
-    //параметры из вызова
+    url: string,
 ) {
     return (props?: PageChildProps & PageEventWrapper) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const context = useContext(AnaliticsContext);
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const currentUrl = window.location.pathname + window.location.search;
-            context.onRender(currentUrl)
-            //параметры
+            //context.onRender(url)
         }, [])
         return (
             <Children />

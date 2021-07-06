@@ -4,8 +4,9 @@ import {
 } from '../../types/types';
 
 import { MyButton } from '../buttons/abstract-button/MyButton';
-import { AnaliticsContext } from '../../analitics-context/AnaliticsContext';
 import { useContext } from 'react';
+import { AnaliticsContext } from '../../analitics-context/AnaliticsContext';
+import { myStore } from '../../analitics-context/ReduxAnalog';
 
 function TrackerWrapperForButton(
     Children: React.FC<ButtonChildProps>,
@@ -18,14 +19,15 @@ function TrackerWrapperForButton(
         ...props
     }: ButtonChildProps & ClickEventWrapper) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { onClick: onClickFromContext } = useContext(AnaliticsContext);
-        const onClick = () => {
-            onClickFromContext({
+        //const { ga4React } = useContext(AnaliticsContext);
+        function onClick() {
+            console.log(myStore.ga4React)
+            myStore.ga4React?.event(
                 label,
                 category,
                 action,
-            });
-            onClickFromProps.apply(arguments);
+            );
+            onClickFromProps.apply(null, arguments);
         }
         return (
             <Children {...props} onClick={onClick} />
