@@ -19,8 +19,9 @@ const MyProvider = (props: {
             : getGoogleIdFromStoreDummy()
                 .then(() => 'G-1B6E1Z43HE')
                 .then(result => {
+                    const updatedInstance = myStore.acceptGoogleId(result)
                     !myStore.isInitialized && setStoreInState(
-                        { ...myStore.acceptGoogleId(result) }
+                        { ...updatedInstance }
                     )
                 })
     }, [serviceId]);

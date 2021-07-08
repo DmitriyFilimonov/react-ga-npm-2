@@ -21,11 +21,12 @@ function TrackerWrapperForButton(
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const context = useContext(AnaliticsContext);
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { analiticsInstance } = useMemo(() => context, [context.id]);
+        //const { analiticsInstance } = useMemo(() => context, [context.id]);
         console.log(context.isInitialized);
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const wrapperOnClick = useCallback(function () {
-            analiticsInstance?.event(
+            console.log(context.analiticsInstance)
+            context.analiticsInstance?.event(
                 label,
                 category,
                 action,
