@@ -13,12 +13,12 @@ export function TrackerWrapperForPage(
 ) {
     return (props?: PageChildProps & PageEventWrapper) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const context = useContext(AnaliticsContext);
+        //const context = useContext(AnaliticsContext);
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const analiticsInstance = useMemo(() => context.analiticsInstance, [context.isInitialized]);
+        //const analiticsInstance = useMemo(() => context.analiticsInstance, [context.isInitialized]);
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            analiticsInstance?.pageview(url);
+            //analiticsInstance?.pageview(url);
         }, [])
         return (
             <Children />

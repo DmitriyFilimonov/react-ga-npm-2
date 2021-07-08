@@ -10,8 +10,8 @@ function App() {
   const [url, setUrl] = useState('/');
 
   const callBack = (param: string) => {
-    url === '/' ? setUrl('/one') : setUrl('/');
-    history.push(url);
+    // url === '/' ? setUrl('/one') : setUrl('/');
+    // history.push(url);
     alert(param);
   }
 

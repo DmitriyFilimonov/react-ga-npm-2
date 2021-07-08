@@ -4,7 +4,7 @@ import {
 } from '../../types/types';
 
 import { MyButton } from '../buttons/abstract-button/MyButton';
-import { useContext } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { AnaliticsContext } from '../../analitics-context/AnaliticsContext';
 import { useMemo } from 'react';
 
@@ -21,17 +21,21 @@ function TrackerWrapperForButton(
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const context = useContext(AnaliticsContext);
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const {analiticsInstance} = useMemo(() => context, [context.isInitialized]);
-        function onClick() {
+        const { analiticsInstance } = useMemo(() => context, [context.id]);
+        console.log(context.isInitialized);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const wrapperOnClick = useCallback(function () {
             analiticsInstance?.event(
                 label,
                 category,
                 action,
             );
             onClickFromProps.apply(null, arguments);
-        }
+        }, [onClickFromProps])
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => { console.log(context.id) }, [context.id])
         return (
-            <Children {...props} onClick={onClick} />
+            <Children {...props} onClick={wrapperOnClick} />
         )
     }
 }
