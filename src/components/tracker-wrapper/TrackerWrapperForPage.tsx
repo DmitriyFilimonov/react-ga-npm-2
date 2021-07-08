@@ -15,10 +15,10 @@ export function TrackerWrapperForPage(
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const context = useContext(AnaliticsContext);
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const ga4React = useMemo(() => context.ga4React, [context.isInitialized]);
+        const analiticsInstance = useMemo(() => context.analiticsInstance, [context.isInitialized]);
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            context.ga4React?.pageview(url);
+            analiticsInstance?.pageview(url);
         }, [])
         return (
             <Children />

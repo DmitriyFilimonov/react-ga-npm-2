@@ -4,7 +4,7 @@ import './index.css';
 import App, { WrappedApp } from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { MyProvider } from './analitics-context/MyProvider';
+import MyProvider from './analitics-context/MyProvider';
 
 ReactDOM.render(
   <React.StrictMode>

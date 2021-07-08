@@ -1,1 +1,9 @@
-export const getGoogleIdFromStoreDummy = () => 'G-1B6E1Z43HE';
+export const getGoogleIdFromStoreDummy = () =>
+    new Promise(
+        resolve => {
+            setTimeout(
+                () => {resolve(undefined)},
+                7000
+            )
+        }
+    );

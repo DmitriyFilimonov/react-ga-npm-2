@@ -7,7 +7,6 @@ import { MyButton } from '../buttons/abstract-button/MyButton';
 import { useContext } from 'react';
 import { AnaliticsContext } from '../../analitics-context/AnaliticsContext';
 import { useMemo } from 'react';
-import { myStore } from '../../analitics-context/ReduxAnalog';
 
 function TrackerWrapperForButton(
     Children: React.FC<ButtonChildProps>,
@@ -22,10 +21,9 @@ function TrackerWrapperForButton(
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const context = useContext(AnaliticsContext);
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const ga4React = useMemo(() => context.ga4React, [context.isInitialized]);
+        const {analiticsInstance} = useMemo(() => context, [context.isInitialized]);
         function onClick() {
-            console.log(ga4React)
-            ga4React?.event(
+            analiticsInstance?.event(
                 label,
                 category,
                 action,
