@@ -15,3 +15,13 @@ export interface ClickEventWrapper {
     action: string,
     label: string,
 }
+export interface GoogleEvent {
+    category: string,
+    action: string,
+    label: string,
+}
+export interface YandexEvent {
+    name: string;
+    type: string;
+    conditions?: any[];
+}

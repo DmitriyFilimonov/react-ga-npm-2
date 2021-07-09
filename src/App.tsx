@@ -21,7 +21,7 @@ function App() {
         <WrappedButton
           action='event'
           category='click'
-          label='TESTS'
+          label='Switch route click'
           onClick={callBack}
           title='switch route'
         />
